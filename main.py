@@ -11,7 +11,6 @@ from system import getFrame
 from character import getCharacter
 ### Image Process Modules ###
 import cv2
-import pyautogui
 ### Computer Vision Modules ###
 from bushsTier1 import loadBushsTier1
 
