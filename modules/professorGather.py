@@ -1,17 +1,17 @@
 import cv2
 import numpy as np
+import pyautogui
+import time
 from env import env
 from system import isNear
-### Bot Modules ###
-import pywinauto.keyboard as keyboard
-import pywinauto.mouse as mouse
 
 def gatherAction(coordinates):
-    pass
-
+    pyautogui.moveTo(coordinates[0], coordinates[1])
+    pyautogui.hotkey('ctrl', 'shift', 'a')
+    pyautogui.click()
+    time.sleep(3)
 
 def checkBushsTier1(character, frame, bushsList):
-    print(bushsList)
     if type(bushsList) == list:
         for bush in bushsList:
             bushMatches = cv2.matchTemplate(
@@ -43,7 +43,7 @@ def gather(gatherConfig, character, frame, computerVision):
         result = checkBushsTier1(
             character, frame, computerVision['bushsTier1'])
         if result != None and type(result) == tuple:
-            gatherAction(result, frame)
+            gatherAction(result)
     elif bushTier == 2:
         # gather rank A bushs
         pass
