@@ -1,0 +1,33 @@
+import cv2
+import numpy as np
+from PIL import ImageGrab
+from env import env
+
+### Get a game frame ###
+def getFrame(): 
+    return cv2.cvtColor(np.array(ImageGrab.grab()), cv2.COLOR_BGR2RGB)
+
+### Compare the distance between two objects ###
+def isNear(obj1, obj2, diagonal = False, frame = None):  # obj1 => bush - obj2 => player
+    if frame != None and env['debug'] == True:
+        cv2.rectangle(
+            frame, (int(obj1[0]-1), int(obj1[1]-1)), (int(obj1[0]+1), int(obj1[1]+1)), (0, 255, 0), 2)
+        cv2.rectangle(
+            frame, (int(obj2[0]-1), int(obj2[1]-1)), (int(obj2[0]+1), int(obj2[1]+1)), (0, 255, 0), 2)
+    if not diagonal:
+        # horizontal
+        if obj1[0] > obj2[0] and obj1[0] - obj2[0] < 93 and (obj1[1] - obj2[1] < 40 and obj1[1] - obj2[1] > - 40):
+            # bush a esquerda
+            return 'west'
+        elif obj1[0] < obj2[0] and obj2[0] - obj1[0] < 93 and (obj1[1] - obj2[1] < 40 and obj1[1] - obj2[1] > - 40):
+            # bush a direita
+            return 'east'
+        # vertical
+        elif obj1[1] > obj2[1] and obj1[1] - obj2[1] < 93 and (obj1[0] - obj2[0] < 40 and obj1[0] - obj2[0] > - 40):
+            # bush acima
+            return 'north'
+        elif obj1[1] < obj2[1] and obj2[1] - obj1[1] < 93 and (obj1[0] - obj2[0] < 40 and obj1[0] - obj2[0] > - 40):
+            # bush abaixo
+            return 'south'
+        else:
+            return 'far'
