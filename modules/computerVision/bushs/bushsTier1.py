@@ -2,7 +2,7 @@ import cv2
 ### Load Bush's ###
 bushsTier1 = []
 def loadBushsTier1():
-    bush1 = cv2.imread('./imgs/bush1.jpg')
+    bush1 = cv2.imread('./imgs/bushsTier1/bush1.jpg')
     bush1_width, bush1_height = bush1.shape[:-1]
     bushsTier1.append({
         'name': 'simple',
@@ -11,7 +11,7 @@ def loadBushsTier1():
         'width': bush1_width,
         'threshold': 0.65
     })
-    bush2 = cv2.imread('./imgs/bush2.jpg')
+    bush2 = cv2.imread('./imgs/bushsTier1/bush2.jpg')
     bush2_width, bush2_height = bush2.shape[:-1]
     bushsTier1.append({
         'name': 'double',
@@ -20,7 +20,7 @@ def loadBushsTier1():
         'width': bush2_width,
         'threshold': 0.65
     })
-    bush3 = cv2.imread('./imgs/bush3.jpg')
+    bush3 = cv2.imread('./imgs/bushsTier1/bush3.jpg')
     bush3_width, bush3_height = bush3.shape[:-1]
     bushsTier1.append({
         'name': 'triple',
@@ -29,7 +29,7 @@ def loadBushsTier1():
         'width': bush3_width,
         'threshold': 0.62
     })
-    bigbush = cv2.imread('./imgs/bigbush.jpg')
+    bigbush = cv2.imread('./imgs/bushsTier1/bigbush.jpg')
     bigbush_width, bigbush_height = bigbush.shape[:-1]
     bushsTier1.append({
         'name': 'giant',
